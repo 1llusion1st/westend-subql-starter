@@ -2,14 +2,13 @@
 # Add the `@index` or `@index(unique: true)` annotation after any non-key field
 # https://academy.subquery.network/build/graphql.html#indexing-by-non-primary-key-field
 
-type StarterEntity @entity {
+type TransferEntity @entity {
   id: ID! #id is a required field
-  field1: Int!
+  BlockNumber: BigInt!
+  ExtrinsicsHash: String
 
-  field2: String #filed2 is an optional field
-  field3: BigInt
-
-  field4: Date
-
-  field5: Boolean
+  From: String!
+  To: String!
+  Amount: BigInt!
+  Success: Boolean
 }

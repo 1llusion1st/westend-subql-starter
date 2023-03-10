@@ -20,8 +20,9 @@ export async function handleEventTransfer(event: SubstrateEvent): Promise<void> 
   var from_ = from.toString();
   var to_ = to.toString();
   var ext = event.extrinsic.extrinsic.hash;
-  var success = event.extrinsic.success
+  var success = event.extrinsic.success;
   var Bamount = (amount as Balance).toBigInt();
+  var blockTimestamp = event.block.timestamp;
   logger.info(
     "\t\tid: " + id +
     "\n\t\t blockN: " + blockNumber.toString() +
@@ -36,5 +37,11 @@ export async function handleEventTransfer(event: SubstrateEvent): Promise<void> 
   transfer.To = to_;
   transfer.ExtrinsicsHash = ext.toString();
   transfer.Success = success;
+  transfer.BlockTimestamp = BigInt(toTimestamp(blockTimestamp.toUTCString()));
   await transfer.save();
+}
+
+function toTimestamp(strDate){
+   var datum = Date.parse(strDate);
+   return datum/1000;
 }

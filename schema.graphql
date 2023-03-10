@@ -5,6 +5,7 @@
 type TransferEntity @entity {
   id: ID! #id is a required field
   BlockNumber: BigInt!
+  BlockTimestamp: BigInt!
   ExtrinsicsHash: String
 
   From: String!
